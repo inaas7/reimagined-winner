@@ -14,12 +14,15 @@ permissions:
 
 env:
   instance: ${{ inputs.instance }}
-  map: '{ "inaas7": "hello@example.com"}'
+  map: '{ "inaas7": "hello@example.com", "jsoref": "word@example.com"}'
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "$instance with $email" >> $GITHUB_STEP_SUMMARY
+      - run: |
+            echo "$instance with $email" >> $GITHUB_STEP_SUMMARY
+            echo "email=$email" >> $GITHUB_ENV
         env:
           email: ${{fromJSON(env.map)[github.actor]}}
+      - run: echo "hello $email" >> $GITHUB_STEP_SUMMARY
