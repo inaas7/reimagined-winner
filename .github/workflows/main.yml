@@ -14,7 +14,12 @@ permissions:
 
 env:
   instance: ${{ inputs.instance }}
-  map: '{ "inaas7": "hello@example.com", "jsoref": "word@example.com"}'
+  map: >-
+    {
+      "inaas7": "hello@example.com",
+      "jsoref": "word@example.com",
+      "": "add-additional-entries-above-this-entry@example.com"
+    }
 
 jobs:
   test:
