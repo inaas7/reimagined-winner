@@ -14,7 +14,7 @@ permissions:
 
 env:
   instance: ${{ inputs.instance }}
-  email: ${{ fromJSON('{ "inaas7": "hello@example.com"}')[github.actor] }}
+  email: "${{ ({ 'inaas7': 'hello@example.com'})[github.actor] }}"
 
 jobs:
   test:
