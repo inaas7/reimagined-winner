@@ -14,10 +14,12 @@ permissions:
 
 env:
   instance: ${{ inputs.instance }}
-  email: "${{ fromJSON('{ "inaas7": "hello@example.com"}')[github.actor] }}"
+  map: '{ "inaas7": "hello@example.com"}'
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - run: echo "$instance with $email" >> $GITHUB_STEP_SUMMARY
+        env:
+          email: ${{fromJSON(env.map)[github.actor]}}
